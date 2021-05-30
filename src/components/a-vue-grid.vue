@@ -1,27 +1,35 @@
 <template>
   <table>
     <thead>
-      <th>Col</th>
+      <th v-for="col in columns" :key="col.title">{{ col.title }}</th>
     </thead>
     <tbody>
-      <tr>
-        <td>Row 1</td>
-      </tr>
-      <tr>
-        <td>Row 2</td>
+      <tr v-for="row in dataRows" :key="row.id">
+        <td v-for="col in columns" :key="col.title">{{ row[col.valuePropName] }}</td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, defineComponent, PropType } from 'vue';
+
+export interface ColumnDefinition {
+  title: string;
+  valuePropName: string;
+}
+
 export default defineComponent({
   name: 'AVueGrid',
   props: {
-    
+    columns: {
+      type: Array as PropType<Array<ColumnDefinition>>
+    },
+    dataRows: {
+      type: Array as PropType<Array<any>>
+    } 
   },
-  setup: () => {
+  setup: (props) => {
     const count = ref(0)
     return { count }
   }
