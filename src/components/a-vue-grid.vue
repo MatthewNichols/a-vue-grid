@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="a_vue_grid">
     <thead>
       <th v-for="col in columns" :key="col.title">{{ col.title }}</th>
     </thead>
@@ -39,20 +39,18 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-a {
-  color: #42b983;
-}
+<style scoped lang="scss">
+$border: 1px solid #000;
 
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
+table.a_vue_grid {
+  border-collapse: collapse;
 
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
+  th {
+    border: $border;
+  }
+
+  td {
+    border: $border;
+  }
 }
 </style>

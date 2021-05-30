@@ -1,5 +1,5 @@
 <template>
-  <a-vue-grid :columns="columns" :dataRows="dataRows" dataRowIdColumn="rowid" />
+  <a-vue-grid id="grid-1" :columns="columns" :dataRows="dataRows" dataRowIdColumn="rowid" />
 </template>
 
 <script lang="ts">
