@@ -4,7 +4,7 @@
       <th v-for="col in columns" :key="col.title">{{ col.title }}</th>
     </thead>
     <tbody>
-      <tr v-for="row in dataRows" :key="row.id">
+      <tr v-for="row in dataRows" :key="row[dataRowIdColumn]">
         <td v-for="col in columns" :key="col.title">{{ row[col.valuePropName] }}</td>
       </tr>
     </tbody>
@@ -27,11 +27,14 @@ export default defineComponent({
     },
     dataRows: {
       type: Array as PropType<Array<any>>
-    } 
+    },
+    dataRowIdColumn: {
+      type: String,
+      default: "id"
+    }
   },
   setup: (props) => {
-    const count = ref(0)
-    return { count }
+    
   }
 })
 </script>

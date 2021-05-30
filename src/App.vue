@@ -1,5 +1,5 @@
 <template>
-  <a-vue-grid :columns="columns" :dataRows="dataRows" />
+  <a-vue-grid :columns="columns" :dataRows="dataRows" dataRowIdColumn="rowid" />
 </template>
 
 <script lang="ts">
@@ -18,8 +18,8 @@ export default defineComponent({
     ] as ColumnDefinition[];
 
     const dataRows: any[] = [
-      { id:"1", col2: "Bye", col1: "Hi" },
-      { id:"2", col2: "Adios", col1: "hola" },
+      { rowid:"1", col2: "Bye", col1: "Hi" },
+      { rowid:"2", col2: "Adios", col1: "hola" },
     ];
 
     return {
