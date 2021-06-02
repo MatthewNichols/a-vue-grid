@@ -5,6 +5,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import AVueGrid, { ColumnDefinition } from './components/a-vue-grid.vue'
+import { baseDataRows } from "./data/data-rows";
 
 export default defineComponent({
   name: 'App',
@@ -13,17 +14,13 @@ export default defineComponent({
   },
   setup() {
     const columns = [
+      { title: 'Row', valuePropName: 'rowid' },
       { title: 'Col1', valuePropName: 'col1' },
       { title: 'Col2', valuePropName: 'col2' },
     ] as ColumnDefinition[];
 
-    const dataRows: any[] = [
-      { rowid:"1", col2: "Bye", col1: "Hi" },
-      { rowid:"2", col2: "Adios", col1: "hola" },
-    ];
-
     return {
-      columns, dataRows
+      columns, dataRows: baseDataRows
     };
   }
 })

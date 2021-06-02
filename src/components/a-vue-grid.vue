@@ -4,7 +4,7 @@
       <th v-for="col in columns" :key="col.title">{{ col.title }}</th>
     </thead>
     <tbody>
-      <tr v-for="row in dataRows" :key="row[dataRowIdColumn]">
+      <tr v-for="row in displayRows" :key="row[dataRowIdColumn]">
         <td v-for="col in columns" :key="col.title">{{ row[col.valuePropName] }}</td>
       </tr>
     </tbody>
@@ -31,10 +31,16 @@ export default defineComponent({
     dataRowIdColumn: {
       type: String,
       default: "id"
+    },
+    rowsPerPage: {
+      type: Number,
+      default: 10
     }
   },
-  setup: (props) => {
-    
+  computed: {
+    displayRows(): any[] {
+      return this.dataRows?.filter((row, index) => index < this.rowsPerPage) || [];
+    }
   }
 })
 </script>
