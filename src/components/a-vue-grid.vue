@@ -5,9 +5,8 @@
         <th v-for="col in columns" :key="col.title">{{ col.title }}</th>
       </thead>
       <tbody>
-        <tr v-for="row in displayRows" :key="row[dataRowIdColumn]">
-          <td v-for="col in columns" :key="col.title">{{ row[col.valuePropName] }}</td>
-        </tr>
+        <grid-row v-for="row in displayRows" :columns="columns" :dataRow="row" :key="row[dataRowIdColumn]">
+        </grid-row>
       </tbody>
     </table>
     <page-selector @pageChange="pageChangeHandler" :currentPageIndex="currentPage"  />
@@ -18,10 +17,11 @@
 import { ref, defineComponent, PropType } from 'vue';
 import { PageChangeTypes, ColumnDefinition } from '../types';
 import PageSelector from "./page-selector.vue";
+import GridRow from "./grid-row.vue";
 
 export default defineComponent({
   name: 'AVueGrid',
-  components: { PageSelector },
+  components: { PageSelector, GridRow },
   props: {
     columns: {
       type: Array as PropType<Array<ColumnDefinition>>
@@ -60,17 +60,18 @@ export default defineComponent({
           break;
       
         case PageChangeTypes.Previous:
-            if (this.currentPage !== 0) {
-              this.currentPage = this.currentPage - 1;
-            } 
+          if (this.currentPage !== 0) {
+            this.currentPage = this.currentPage - 1;
+          } 
           break;
       
         case PageChangeTypes.Next:
-            this.currentPage = this.currentPage + 1;
+          this.currentPage = this.currentPage + 1;
           break;
       
         case PageChangeTypes.Last:
-            this.currentPage = 0;
+          //TODO: This is problematic. Need to calculate last page
+          this.currentPage = 0;
           break;
       
         default:
