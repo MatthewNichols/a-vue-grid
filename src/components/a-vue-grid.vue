@@ -2,7 +2,7 @@
   <div class="a_vue_grid">
     <table>
       <thead>
-        <th v-for="col in columns" :key="col.title">{{ col.title }}</th>
+        <th v-for="col in columns" :key="col.title" :class="col.headerClass">{{ col.title }}</th>
       </thead>
       <tbody>
         <grid-row v-for="row in displayRows" :columns="columns" :dataRow="row" :key="row[dataRowIdColumn]">
