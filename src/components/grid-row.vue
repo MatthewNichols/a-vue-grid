@@ -1,14 +1,14 @@
 <template>
     <tr>
-        <td v-for="col in columns" :key="col.title">
-            {{ dataRow[col.valuePropName] }}
+        <td v-for="col in columns" :key="col.title" :class="col.rowClass">
+            {{ renderCellValue(dataRow, col) }}
         </td>
     </tr>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ColumnDefinition, PageChangeTypes } from "../types";
+import { ColumnDefinition, ColumnDataType } from "../types";
 
 export default defineComponent({
     name: 'AVGGridRow',
@@ -24,19 +24,13 @@ export default defineComponent({
             default: "id"
         }
     },
-    emits: { 
-         
-    },
-    setup() {
-        return {
-            PageChangeTypes
+    methods: {
+        renderCellValue(row: any, column: ColumnDefinition): string {
+            return row[column.valuePropName];
         }
     },
-    methods: {
-        
-    },
     computed: {
-        
+
     }
 });
 </script>

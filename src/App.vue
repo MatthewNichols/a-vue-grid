@@ -17,7 +17,7 @@ export default defineComponent({
     const columns = [
       { title: 'Row', valuePropName: 'rowid' },
       { title: 'Col1', valuePropName: 'col1' },
-      { title: 'Col2', valuePropName: 'col2' },
+      { title: 'Col2', valuePropName: 'col2', rowClass: 'col-2' },
     ] as ColumnDefinition[];
 
     return {
@@ -35,5 +35,9 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+table tr td.col-2 {
+  text-align: right;
 }
 </style>

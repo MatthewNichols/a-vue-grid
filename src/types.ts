@@ -7,6 +7,8 @@ export interface ColumnDefinition {
     title: string;
     valuePropName: string;
     type?: ColumnDataType;
+    headerClass?: string;
+    rowClass?: string;
     display?: boolean;
 }
   
