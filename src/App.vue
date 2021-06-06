@@ -17,7 +17,8 @@ export default defineComponent({
     const columns = [
       { title: 'Row', valuePropName: 'rowid' },
       { title: 'Col1', valuePropName: 'col1' },
-      { title: 'Col2', valuePropName: 'col2', headerClass: 'col-2-header', rowClass: 'col-2' },
+      { title: 'Col2', valuePropName: 'col2', display: true, headerClass: 'col-2-header', rowClass: 'col-2' },
+      { title: 'Fake', valuePropName: 'col2', display: false },
     ] as ColumnDefinition[];
 
     return {

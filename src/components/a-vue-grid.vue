@@ -2,7 +2,7 @@
   <div class="a_vue_grid">
     <table>
       <thead>
-        <th v-for="col in columns" :key="col.title" :class="col.headerClass">{{ col.title }}</th>
+        <th v-for="col in displayColumns" :key="col.title" :class="col.headerClass">{{ col.title }}</th>
       </thead>
       <tbody>
         <grid-row v-for="row in displayRows" :columns="columns" :dataRow="row" :key="row[dataRowIdColumn]">
@@ -24,7 +24,8 @@ export default defineComponent({
   components: { PageSelector, GridRow },
   props: {
     columns: {
-      type: Array as PropType<Array<ColumnDefinition>>
+      type: Array as PropType<Array<ColumnDefinition>>,
+      required: true
     },
     dataRows: {
       type: Array as PropType<Array<any>>
@@ -44,6 +45,9 @@ export default defineComponent({
     }
   },
   computed: {
+    displayColumns(): ColumnDefinition[] {
+      return this.columns.filter((c) => c.display === undefined || c.display === true);
+    },
     displayRows(): any[] {
       const skip = this.currentPage * this.rowsPerPage;
       const toIndex = skip + this.rowsPerPage;

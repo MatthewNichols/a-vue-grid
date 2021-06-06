@@ -1,6 +1,6 @@
 <template>
     <tr>
-        <td v-for="col in columns" :key="col.title" :class="col.rowClass">
+        <td v-for="col in displayColumns" :key="col.title" :class="col.rowClass">
             {{ renderCellValue(dataRow, col) }}
         </td>
     </tr>
@@ -14,7 +14,8 @@ export default defineComponent({
     name: 'AVGGridRow',
     props: {
         columns: {
-            type: Array as PropType<Array<ColumnDefinition>>
+            type: Array as PropType<Array<ColumnDefinition>>,
+            required: true
         },
         dataRow: {
             type: Object as PropType<any>
@@ -30,7 +31,9 @@ export default defineComponent({
         }
     },
     computed: {
-
+        displayColumns(): ColumnDefinition[] {
+            return this.columns.filter((c) => c.display === undefined || c.display === true);
+        }
     }
 });
 </script>
