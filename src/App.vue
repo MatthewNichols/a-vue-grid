@@ -4,7 +4,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import AVueGrid, { ColumnDefinition } from './components/a-vue-grid.vue'
+import AVueGrid from './components/a-vue-grid.vue'
+import { ColumnDefinition } from './types'
 import { baseDataRows } from "./data/data-rows";
 
 export default defineComponent({
